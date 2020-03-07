@@ -1,8 +1,6 @@
 package autocorrect
 
 import (
-	"fmt"
-	"io/ioutil"
 	"regexp"
 	"testing"
 )
@@ -17,14 +15,6 @@ func assertHTMLEqual(t *testing.T, exptected, actual string) {
 	}
 }
 
-func readFile(filename string) (out string) {
-	data, err := ioutil.ReadFile(fmt.Sprintf("./_fixtures/%s", filename))
-	if err != nil {
-		panic(err)
-	}
-	return string(data)
-}
-
 func BenchmarkFormatHTML(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		// about 1.4ms/op
@@ -32,7 +22,7 @@ func BenchmarkFormatHTML(b *testing.B) {
 	}
 }
 func TestFormatHTMLWithFixtuires(t *testing.T) {
-	expected := readFile("example.expected.txt")
+	expected := readFile("example.txt.expected")
 	out, err := FormatHTML(readFile("example.txt"))
 	if err != nil {
 		t.Error(err)

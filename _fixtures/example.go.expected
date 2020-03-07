@@ -1,0 +1,15 @@
+package foo
+
+import "fmt"
+
+const (
+	// 这是 comment 单行
+	foo = "这是一个 Go 的提示信息" // 测试 after 注释
+	/* 测试 multi-line 字符串 */
+	bar = `这是 Go 长字符串
+	这是 string 第二行`
+)
+
+func main() {
+	fmt.Println("准备打印 Foo 的结果:", foo)
+}

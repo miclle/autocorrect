@@ -1,6 +1,8 @@
 package autocorrect
 
 import (
+	"fmt"
+	"io/ioutil"
 	"testing"
 )
 
@@ -15,6 +17,14 @@ func assertCases(t *testing.T, cases map[string]string) {
 		actual := Format(source)
 		assertEqual(t, exptected, actual)
 	}
+}
+
+func readFile(filename string) (out string) {
+	data, err := ioutil.ReadFile(fmt.Sprintf("./_fixtures/%s", filename))
+	if err != nil {
+		panic(err)
+	}
+	return string(data)
 }
 
 func BenchmarkFormatShort(b *testing.B) {
